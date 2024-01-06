@@ -1,0 +1,19 @@
+{
+  "name": "lambda-hello-name",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w"
+  },
+  "author": "LocalStack",
+  "license": "LocalStack",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.122",
+    "@types/node": "^20.8.4"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.438.0",
+    "@aws-sdk/lib-dynamodb": "^3.438.0",
+    "typescript": "^5.2.2"
+  }
+}
