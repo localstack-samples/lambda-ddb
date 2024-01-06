@@ -47,6 +47,9 @@ This will run the integration test asserting the Lambda AppConfig and DynamoDB i
 make local-awscdk-test
 ```
 
+## Deploy and Test in Integration Environment
+To deploy and test in an integration environment, change all of the `local-<command>` commands above to `integ-<command>`.
+
 ### Cleanup and restart LocalStack
 
 ```shell
@@ -95,12 +98,3 @@ make sbx-awscdk-invoke
 ```shell
 make sbx-awscdk-destroy
 ```
-
-# LocalStack DevX
-
-With LocalStack, you can iterate quickly with an Amazing DevX.
-The deployment of this solution to AWS takes **11 minutes**. The deployment of this solution
-to LocalStack takes **34 seconds**.
-
-![AWS Deployment Time](./docs/img/aws-deploy-timing.png)
-![LocalStack Deployment Time](./docs/img/localstack-deploy-timing.png)

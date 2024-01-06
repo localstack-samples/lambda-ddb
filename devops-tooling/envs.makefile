@@ -57,6 +57,8 @@ local-awscdk%: export TFSTACK_NAME=LambdaDDB-$(STACK_SUFFIX)
 local-awscdk-vpc%: export TFSTACK_NAME=LambdaDDBVpc-$(STACK_SUFFIX)
 
 # AWS CDK local pipeline vars
+# LOCALSTACK_HOSTNAME is deprecated. cdklocal needs to be updated before we change this to LOCALSTACK_HOST
+integ%: export LOCALSTACK_HOSTNAME=localstack
 integ%: export STACK_SUFFIX=integ
 integ-awscdk%: export STACK_DIR=iac/awscdk
 integ-awscdk%: export TFSTACK_NAME=LambdaDDB-$(STACK_SUFFIX)
