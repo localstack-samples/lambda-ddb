@@ -33,8 +33,8 @@ integ-awscdk-destroy: awscdkdestroy
 integ-awscdk-output: awscdkoutput
 
 local-awscdk-test:
-	make local-awscdk-output > auto_tests/iac-output.json;
-	make test
+	make -s local-awscdk-output > auto_tests/iac-output.json;
+	make -s test
 
 local-awscdk-invoke:
 	@APIGW=$$(make local-awscdk-output | jq -r '.apigwUrl') && \
@@ -45,8 +45,8 @@ local-awscdk-invoke-loop:
 	sh run-lambdas.sh "http://$${APIGW}"
 
 integ-awscdk-test:
-	make integ-awscdk-output > auto_tests/iac-output.json;
-	make test
+	make -s integ-awscdk-output > auto_tests/iac-output.json;
+	make -s test
 
 integ-awscdk-invoke:
 	@APIGW=$$(make integ-awscdk-output | jq -r '.apigwUrl') && \
