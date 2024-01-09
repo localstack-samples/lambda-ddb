@@ -25,7 +25,7 @@ new AwscdkStack(app, 'LambdaDDB-local', {
     /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
     isLocal: true,
     environment: 'local',
-    lambdaDistPath: path.resolve("../../src/lambda-hello-name/dist"),
+    lambdaDistPath: path.resolve("../../src/lambda-hello-name/bundle"),
     handler: "index.handler",
     runtime: Runtime.NODEJS_18_X,
     listBucketName: process.env.LIST_BUCKET_NAME || 'lambda-work',
@@ -51,7 +51,7 @@ new AwscdkStack(app, 'LambdaDDB-integ', {
     /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
     isLocal: false,
     environment: 'integ',
-    lambdaDistPath: path.resolve("../../src/lambda-hello-name/dist"),
+    lambdaDistPath: path.resolve("../../src/lambda-hello-name/bundle"),
     handler: "index.handler",
     runtime: Runtime.NODEJS_18_X,
     listBucketName: process.env.LIST_BUCKET_NAME || 'lambda-work',
@@ -78,7 +78,7 @@ new AwscdkStack(app, 'LambdaDDB-sbx', {
     /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
     isLocal: false,
     environment: 'sbx',
-    lambdaDistPath: path.resolve("../../src/lambda-hello-name/dist"),
+    lambdaDistPath: path.resolve("../../src/lambda-hello-name/bundle"),
     handler: "index.handler",
     runtime: Runtime.NODEJS_18_X,
     listBucketName: process.env.LIST_BUCKET_NAME || 'lambda-work',
