@@ -6,7 +6,10 @@ import {
 } from "@aws-sdk/lib-dynamodb"
 
 // Bare-bones DynamoDB Client
-const client = new DynamoDBClient({})
+const client = new DynamoDBClient(
+    { endpoint: "http://localstack:4566",
+        credentials: {accessKeyId: "test", secretAccessKey: "test"}
+})
 // Bare-bones document client
 const dynamo = DynamoDBDocumentClient.from(client) // client is DynamoDB client
 
