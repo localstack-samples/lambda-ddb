@@ -7,9 +7,9 @@ import * as Iam from "aws-cdk-lib/aws-iam"
 import {PolicyStatement} from "aws-cdk-lib/aws-iam"
 import * as S3 from "aws-cdk-lib/aws-s3"
 // API Gateway V2 HTTP API - ALPHA
-import {HttpLambdaIntegration} from '@aws-cdk/aws-apigatewayv2-integrations-alpha'
-import * as apigwv2 from "@aws-cdk/aws-apigatewayv2-alpha"
-import {HttpApi} from "@aws-cdk/aws-apigatewayv2-alpha"
+import {HttpLambdaIntegration} from 'aws-cdk-lib/aws-apigatewayv2-integrations'
+import * as apigwv2 from "aws-cdk-lib/aws-apigatewayv2"
+import {HttpApi} from "aws-cdk-lib/aws-apigatewayv2"
 
 export interface LsMultiEnvAppProps extends cdk.StackProps {
     isLocal: boolean;
