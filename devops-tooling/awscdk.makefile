@@ -4,15 +4,13 @@ awscdkinstall:
 awscdkbootstrap: iac-shared awscdkinstall build
 	cd $(STACK_DIR) && $(CDK_CMD) bootstrap
 awscdkdeploy: iac-shared
-	cd $(STACK_DIR) && $(CDK_CMD) deploy $(TFSTACK_NAME)
+	cd $(STACK_DIR) && $(CDK_CMD) deploy $(TFSTACK_NAME) --outputs-file stack-outputs-$(STACK_SUFFIX).json
 awscdkdestroy: iac-shared
 	cd $(STACK_DIR) && $(CDK_CMD) destroy $(TFSTACK_NAME)
+
 awscdkoutput:
-	@aws cloudformation describe-stacks \
-  --stack-name $(TFSTACK_NAME) \
-  --query "Stacks[0].Outputs[?ExportName=='HttpApiEndpoint'].OutputValue" \
-  --output text \
-  --profile localstack | jq -R -c '{apigwUrl: .}'
+	jq '{ apigwUrl: ."LambdaDDB-$(STACK_SUFFIX)".HttpApiEndpoint, ddbTableName: ."LambdaDDB-$(STACK_SUFFIX)".ddbTableName }' \
+	iac/awscdk/stack-outputs-$(STACK_SUFFIX).json
 
 
 # LocalStack target groups
