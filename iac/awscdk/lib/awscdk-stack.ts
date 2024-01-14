@@ -9,7 +9,7 @@ import * as S3 from "aws-cdk-lib/aws-s3"
 // API Gateway V2 HTTP API
 import {HttpLambdaIntegration} from 'aws-cdk-lib/aws-apigatewayv2-integrations'
 import * as apigwv2 from "aws-cdk-lib/aws-apigatewayv2"
-import {HttpApi} from "aws-cdk-lib/aws-apigatewayv2"
+import {HttpApi, HttpStage} from "aws-cdk-lib/aws-apigatewayv2"
 
 export interface LsMultiEnvAppProps extends cdk.StackProps {
     isLocal: boolean;
@@ -27,6 +27,7 @@ export interface LsMultiEnvAppProps extends cdk.StackProps {
 // Create an S3 bucket, Lambda, HttpAPI with Lambda binding
 export class AwscdkStack extends cdk.Stack {
     private httpApi: HttpApi
+    pvivate stage: HttpStage
     private lambdaFunction: Function
     private bucket: s3.Bucket
     private lambdaCode: Code
@@ -97,7 +98,10 @@ export class AwscdkStack extends cdk.Stack {
         const nameIntegration =
             new HttpLambdaIntegration('NameIntegration', this.lambdaFunction)
 
-
+        this.stage = new apigwv2.HttpStage(this, 'Stage', {
+          httpApi: this.httpApi,
+          stageName: 'beta',
+        });
         // HttpAPI Route
         // Method:      GET
         // Path:        /
@@ -115,7 +119,7 @@ export class AwscdkStack extends cdk.Stack {
         })
         // Output the HttpApiEndpoint
         new cdk.CfnOutput(this, 'HttpApiEndpoint', {
-            value: this.httpApi.apiEndpoint,
+            value: this.stage.api.apiEndpoint,
             exportName: 'HttpApiEndpoint',
         })
     }
