@@ -21,7 +21,7 @@ class TestNameApigw:
 
     def test_lambda_ddb_integration(self, iac_output):
         env = TestNameApigw.get_env_vars(iac_output)
-        base_url = {env.REST_API_ENDPOINT}.replace("https", "http")
+        base_url = env.REST_API_ENDPOINT.replace("https", "http")
         url = f"{base_url}?name=localstack"
         logger.info(f"url: {json.dumps(url)}")
         response = requests.get(
