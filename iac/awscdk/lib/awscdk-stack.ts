@@ -115,7 +115,7 @@ export class AwscdkStack extends cdk.Stack {
         })
         // Output the HttpApiEndpoint
         new cdk.CfnOutput(this, 'HttpApiEndpoint', {
-            value: this.httpApi.defaultStage?.api.apiEndpoint || "undefined",
+            value: this.httpApi.apiEndpoint,
             exportName: 'HttpApiEndpoint',
         })
     }
