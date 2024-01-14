@@ -27,7 +27,7 @@ export interface LsMultiEnvAppProps extends cdk.StackProps {
 // Create an S3 bucket, Lambda, HttpAPI with Lambda binding
 export class AwscdkStack extends cdk.Stack {
     private httpApi: HttpApi
-    pvivate stage: HttpStage
+    private stage: HttpStage
     private lambdaFunction: Function
     private bucket: s3.Bucket
     private lambdaCode: Code
