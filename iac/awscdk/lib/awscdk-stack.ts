@@ -93,10 +93,10 @@ export class AwscdkStack extends cdk.Stack {
         // Allow Lambda to write to this DDB table
         ddbTable.grantWriteData(this.lambdaFunction)
 
-
         // HttpAPI Lambda Integration for the above Lambda
         const nameIntegration =
             new HttpLambdaIntegration('NameIntegration', this.lambdaFunction)
+
 
         // HttpAPI Route
         // Method:      GET
