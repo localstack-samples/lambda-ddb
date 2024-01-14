@@ -98,10 +98,6 @@ export class AwscdkStack extends cdk.Stack {
         const nameIntegration =
             new HttpLambdaIntegration('NameIntegration', this.lambdaFunction)
 
-        this.stage = new apigwv2.HttpStage(this, 'Stage', {
-          httpApi: this.httpApi,
-          stageName: 'beta',
-        });
         // HttpAPI Route
         // Method:      GET
         // Path:        /
@@ -111,6 +107,11 @@ export class AwscdkStack extends cdk.Stack {
             methods: [apigwv2.HttpMethod.GET],
             integration: nameIntegration,
         })
+
+        this.stage = new apigwv2.HttpStage(this, 'Stage', {
+          httpApi: this.httpApi,
+          stageName: 'beta',
+        });
 
         // Output the DDB Table Name
         new cdk.CfnOutput(this, 'ddbTableName', {
