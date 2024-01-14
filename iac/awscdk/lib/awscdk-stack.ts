@@ -6,7 +6,7 @@ import {Construct} from 'constructs'
 import * as Iam from "aws-cdk-lib/aws-iam"
 import {PolicyStatement} from "aws-cdk-lib/aws-iam"
 import * as S3 from "aws-cdk-lib/aws-s3"
-// API Gateway V2 HTTP API - ALPHA
+// API Gateway V2 HTTP API
 import {HttpLambdaIntegration} from 'aws-cdk-lib/aws-apigatewayv2-integrations'
 import * as apigwv2 from "aws-cdk-lib/aws-apigatewayv2"
 import {HttpApi} from "aws-cdk-lib/aws-apigatewayv2"
@@ -66,7 +66,7 @@ export class AwscdkStack extends cdk.Stack {
 
         // HTTP API Gateway V2
         this.httpApi = new HttpApi(this, this.stackName + "HttpApi", {
-            description: "AWS CDKv2 HttpAPI-alpha"
+            description: "AWS CDKv2 HttpAPI"
         })
 
         // Allow Lambda to list bucket contents
@@ -115,7 +115,7 @@ export class AwscdkStack extends cdk.Stack {
         })
         // Output the HttpApiEndpoint
         new cdk.CfnOutput(this, 'HttpApiEndpoint', {
-            value: this.httpApi.apiEndpoint,
+            value: this.httpApi.defaultStage?.api.apiEndpoint || "undefined",
             exportName: 'HttpApiEndpoint',
         })
     }
